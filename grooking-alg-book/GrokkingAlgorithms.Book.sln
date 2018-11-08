@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrokkingAlgorithms.Book.Csharp", "GrokkingAlgorithms.Book.Csharp\GrokkingAlgorithms.Book.Csharp.csproj", "{F67E020F-96D2-4E94-9EF4-B15E34C48030}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F67E020F-96D2-4E94-9EF4-B15E34C48030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F67E020F-96D2-4E94-9EF4-B15E34C48030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F67E020F-96D2-4E94-9EF4-B15E34C48030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F67E020F-96D2-4E94-9EF4-B15E34C48030}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
