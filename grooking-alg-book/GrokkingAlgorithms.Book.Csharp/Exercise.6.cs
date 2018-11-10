@@ -22,10 +22,10 @@ namespace GrokkingAlgorithms.Book.Csharp
 
     public class Exercise6Tests
     {
-        int? FindShortestPathLength(Node<char> graph)
+        int? FindShortestPathLength<T>(Node<T> graph, T value) where T : IComparable<T>
         {
-            var queue = new Queue<Node<char>>();
-            var visited = new List<Node<char>>();
+            var queue = new Queue<Node<T>>();
+            var visited = new List<Node<T>>();
             var count = 0;
             queue.Enqueue(graph);
             var lastNode = graph;
@@ -34,8 +34,8 @@ namespace GrokkingAlgorithms.Book.Csharp
                 var node = queue.Dequeue();
                 if (lastNode != node && !lastNode.Neighbors.Contains(node))
                     count++;
-
-                if (node.Value == 'f')
+                
+                if (EqualityComparer<T>.Default.Equals(node.Value, value))
                     return count;
 
                 lastNode = node;
@@ -80,7 +80,35 @@ namespace GrokkingAlgorithms.Book.Csharp
                 }
             };
 
-            Assert.Equal(2, FindShortestPathLength(graph));
+            Assert.Equal(2, FindShortestPathLength(graph, 'f'));
+        }
+
+        [Fact]
+        public void Exercise_6_2()
+        {
+            var cab = new Node<string>("cab");
+            var car = new Node<string>("car");
+            var cat = new Node<string>("cat");
+            var mat = new Node<string>("mat");
+            var bat = new Node<string>("bat");
+            var bar = new Node<string>("bar");
+
+            cab.Neighbors.AddRange(new[]
+            {
+                cat, car
+            });
+            car.Neighbors.AddRange(new[]
+            {
+                cat, bar
+            });
+            cat.Neighbors.AddRange(new[]
+            {
+                mat, bat
+            });
+            mat.Neighbors.Add(bat);
+            bar.Neighbors.Add(bat);
+
+            Assert.Equal(2, FindShortestPathLength(cab, "bat"));
         }
     }
 }
