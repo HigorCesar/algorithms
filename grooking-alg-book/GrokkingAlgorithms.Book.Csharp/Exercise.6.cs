@@ -1,18 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using Xunit;
 
 namespace GrokkingAlgorithms.Book.Csharp
 {
     class Node<T>
     {
-        public Node()
-        {
-        }
-
         public Node(T value)
         {
             Value = value;
@@ -24,7 +17,7 @@ namespace GrokkingAlgorithms.Book.Csharp
 
     public class Exercise6Tests
     {
-        int? FindShortestPathLength<T>(Node<T> graph, T value) where T : IComparable<T>
+        int? FindShortestPathLength<T>(Node<T> graph, T value)
         {
             var queue = new Queue<Node<T>>();
             var visited = new List<Node<T>>();
@@ -49,11 +42,10 @@ namespace GrokkingAlgorithms.Book.Csharp
             return null;
         }
 
-        IEnumerable<T> FindParentNodes<T>(Node<T> graph, T value) where T : IComparable<T>
+        IEnumerable<T> FindParentNodes<T>(Node<T> graph, T value)
         {
             var visited = new List<Node<T>>();
             var parentNodes = new Dictionary<T, T>();
-            //var parentNodes = new List<Node<T>>();
             var queue = new Queue<Node<T>>();
             queue.Enqueue(graph);
             parentNodes.Add(graph.Value, default(T));
@@ -81,6 +73,7 @@ namespace GrokkingAlgorithms.Book.Csharp
                 keyParents.Add(key);
                 key = parentNodes[key];
             }
+
             return keyParents;
         }
 
@@ -98,10 +91,9 @@ namespace GrokkingAlgorithms.Book.Csharp
             brushTeeth.Neighbors.Add(eatBreakfast);
 
             var isValid = true;
-            for (int i = 0; i < candidate.Count && isValid; i++)
+            for (var i = 0; i < candidate.Count && isValid; i++)
             {
-                var foo = FindParentNodes(wakeUp, candidate[i]);
-                isValid &= foo.All(p => candidate.IndexOf(p) < i);
+                isValid &= FindParentNodes(wakeUp, candidate[i]).All(p => candidate.IndexOf(p) < i);
             }
 
             return isValid;
@@ -178,9 +170,10 @@ namespace GrokkingAlgorithms.Book.Csharp
             {
                 'w', 's', 'e', 'b'
             };
-            
+
             Assert.False(IsListValid(given));
         }
+
         [Fact]
         public void Exercise_6_3_2()
         {
@@ -188,9 +181,10 @@ namespace GrokkingAlgorithms.Book.Csharp
             {
                 'w', 'b', 'e', 's'
             };
-            
+
             Assert.True(IsListValid(given));
         }
+
         [Fact]
         public void Exercise_6_3_3()
         {
@@ -198,7 +192,7 @@ namespace GrokkingAlgorithms.Book.Csharp
             {
                 's', 'w', 'b', 'e'
             };
-            
+
             Assert.False(IsListValid(given));
         }
     }
