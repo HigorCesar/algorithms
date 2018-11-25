@@ -4,17 +4,6 @@ using Xunit;
 
 namespace GrokkingAlgorithms.Book.Csharp
 {
-    class Node<T>
-    {
-        public Node(T value)
-        {
-            Value = value;
-        }
-
-        public T Value { get; }
-        public List<Node<T>> Neighbors { get; set; } = new List<Node<T>>();
-    }
-
     public class Exercise6Tests
     {
         int? FindShortestPathLength<T>(Node<T> graph, T value)
