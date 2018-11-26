@@ -56,10 +56,9 @@ namespace GrokkingAlgorithms.Book.Csharp
             var processed = new List<string>();
             while (!closestNode.Equals(default(KeyValuePair<string, int>)))
             {
-                var cost = costs[closestNode.Key];
                 foreach (var edge in graphVertexCost[closestNode.Key])
                 {
-                    var newCost = cost + edge.Value;
+                    var newCost = costs[closestNode.Key] + edge.Value;
                     if (costs[edge.Key] > newCost)
                     {
                         costs[edge.Key] = newCost;
